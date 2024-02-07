@@ -1,4 +1,4 @@
-import { NotFoundError, ServerError } from './errors.js'
+import { NotFoundError } from './errors.js'
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class Http {
@@ -27,11 +27,6 @@ export class Http {
   public static notFound = (param: string): Http.Response => ({
     statusCode: 404 as const,
     body: new NotFoundError(param),
-  })
-
-  public static serverError = (error: unknown): Http.Response => ({
-    statusCode: 500 as const,
-    body: new ServerError(error as Error),
   })
 }
 

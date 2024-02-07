@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { type InternalError } from '#domain/entities/index.js'
 import type { IController } from '#presentation/protocols/index.js'
 import type { RouteHandlerMethod } from 'fastify'
 
@@ -27,8 +28,18 @@ export const adaptController: ControllerAdapter = controller => {
       ...parseBody(req.body as Record<string, any>),
     }
 
-    const httpResponse = await controller.handle(request)
+    try {
+      const httpResponse = await controller.handle(request)
 
-    await res.status(httpResponse.statusCode).send(httpResponse.body)
+      return await res.status(httpResponse.statusCode).send(httpResponse.body)
+    } catch (error) {
+      const internalError = error as InternalError
+
+      if (internalError.isInternal) {
+        return await res.status(400).send({ message: internalError.message })
+      }
+
+      return await res.status(500).send({ message: 'Erro interno' })
+    }
   }
 }

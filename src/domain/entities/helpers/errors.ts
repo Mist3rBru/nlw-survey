@@ -28,12 +28,3 @@ export class NotFoundError extends InternalError {
     this.name = 'NotFoundError'
   }
 }
-
-export class ServerError extends InternalError {
-  constructor(error: Error) {
-    super('Erro interno')
-    this.name = 'ServerError'
-    this.stack = error.stack
-    console.error(error)
-  }
-}

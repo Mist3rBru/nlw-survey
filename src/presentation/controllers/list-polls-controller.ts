@@ -7,12 +7,8 @@ export class ListPollsController implements IController {
   constructor(private readonly listPolls: IListPolls) {}
 
   async handle(request: unknown): Promise<Http.Response> {
-    try {
-      const result = await this.listPolls.list()
+    const result = await this.listPolls.list()
 
-      return Http.ok(result.map(poll => new PollMapper(poll).toHttp()))
-    } catch (error) {
-      return Http.serverError(error)
-    }
+    return Http.ok(result.map(poll => new PollMapper(poll).toHttp()))
   }
 }
