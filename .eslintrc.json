@@ -1,0 +1,25 @@
+{
+  "extends": ["plugin:mist3rbru/node"],
+  "rules": {
+    "no-void": "error"
+  },
+  "overrides": [
+    {
+      "files": ["src/domain/mappers/*.ts"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off"
+      }
+    },
+    {
+      "files": ["src/main/routes/*.ts"],
+      "rules": {
+        "import/no-default-export": "off"
+      }
+    },
+    {
+      "files": ["__tests__/**/*.spec.ts"],
+      "extends": ["plugin:mist3rbru/jest"],
+      "rules": {}
+    }
+  ]
+}

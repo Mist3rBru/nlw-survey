@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    /* Build */
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    /* Base Options: */
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "lib": ["es2022"],
+
+    /* Strictness */
+    "strict": true,
+    "verbatimModuleSyntax": true,
+    "forceConsistentCasingInFileNames": true,
+    "useUnknownInCatchVariables": true,
+
+    /* Alias */
+    "baseUrl": ".",
+    "paths": {
+      "#tests/*": ["__tests__/*"],
+      "#*": ["src/*"]
+    }
+  }
+}
