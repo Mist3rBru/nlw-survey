@@ -15,7 +15,6 @@ export class PollOptionMapper {
   public toHttp() {
     return {
       id: this.props.id,
-      pollId: this.props.pollId,
       title: this.props.title,
     }
   }
