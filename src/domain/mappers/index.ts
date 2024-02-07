@@ -1,2 +1,2 @@
-export * from './pool-mapper.js'
-export * from './pool-option-mapper.js'
+export * from './poll-mapper.js'
+export * from './poll-option-mapper.js'

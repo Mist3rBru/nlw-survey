@@ -1,10 +1,10 @@
-import { type Pool } from '#domain/entities/index.js'
-import { type Pool as PrismaPool } from '@prisma/client'
+import { type Poll } from '#domain/entities/index.js'
+import { type Poll as PrismaPoll } from '@prisma/client'
 
-export class PoolMapper {
-  constructor(private readonly props: Pool) {}
+export class PollMapper {
+  constructor(private readonly props: Poll) {}
 
-  public toPrisma(): PrismaPool {
+  public toPrisma(): PrismaPoll {
     return {
       id: this.props.id,
       title: this.props.title,

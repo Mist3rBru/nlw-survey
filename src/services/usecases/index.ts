@@ -1,1 +1,1 @@
-export * from './pool/create-pool.js'
+export * from './poll/create-poll.js'

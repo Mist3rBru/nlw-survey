@@ -10,23 +10,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Pool {
+model Poll {
   id        String   @id
   title     String
   createdAt DateTime @map("created_at")
   updatedAt DateTime @map("updated_at")
 
-  options PoolOption[]
+  options PollOption[]
 
-  @@map("pools")
+  @@map("polls")
 }
 
-model PoolOption {
+model PollOption {
   id     String @id
-  poolId String
+  pollId String
   title  String
 
-  pool Pool @relation(fields: [poolId], references: [id])
+  poll Poll @relation(fields: [pollId], references: [id])
 
-  @@map("pool_options")
+  @@map("poll_options")
 }

@@ -1,21 +1,21 @@
 import { UUID } from './helpers/uuid.js'
-import { PoolOption } from './pool-option.js'
+import { PollOption } from './poll-option.js'
 
-export class Pool {
-  private readonly props: Pool.Props
+export class Poll {
+  private readonly props: Poll.Props
 
-  constructor(params: Pool.Params) {
-    const poolId = new UUID(params.id)
+  constructor(params: Poll.Params) {
+    const pollId = new UUID(params.id)
     this.props = {
       ...params,
-      id: poolId,
+      id: pollId,
       options: params.options.map(option =>
         typeof option === 'string'
-          ? new PoolOption({
-              poolId: poolId.value,
+          ? new PollOption({
+              pollId: pollId.value,
               title: option,
             })
-          : new PoolOption(option)
+          : new PollOption(option)
       ),
 
       createdAt: params.createdAt ?? new Date(),
@@ -39,16 +39,16 @@ export class Pool {
     return this.props.updatedAt
   }
 
-  get options(): PoolOption[] {
+  get options(): PollOption[] {
     return this.props.options
   }
 }
 
-export namespace Pool {
+export namespace Poll {
   export interface Params {
     id?: string
     title: string
-    options: PoolOption.Params[] | string[]
+    options: PollOption.Params[] | string[]
     createdAt?: Date
     updatedAt?: Date
   }
@@ -56,7 +56,7 @@ export namespace Pool {
   export interface Props {
     id: UUID
     title: string
-    options: PoolOption[]
+    options: PollOption[]
     createdAt: Date
     updatedAt: Date
   }
