@@ -11,10 +11,22 @@ datasource db {
 }
 
 model Pool {
-  id String @id 
-  title String
+  id        String   @id
+  title     String
   createdAt DateTime @map("created_at")
   updatedAt DateTime @map("updated_at")
-  
+
+  options PoolOption[]
+
   @@map("pools")
+}
+
+model PoolOption {
+  id     String @id
+  poolId String
+  title  String
+
+  pool Pool @relation(fields: [poolId], references: [id])
+
+  @@map("pool_options")
 }

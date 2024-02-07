@@ -10,7 +10,9 @@
     "lint": "run-s lint:tsc lint:prettier lint:eslint",
     "lint:tsc": "tsc --noEmit",
     "lint:prettier": "prettier --write .",
-    "lint:eslint": "eslint --fix \"src/**/*.ts\""
+    "lint:eslint": "eslint --fix \"src/**/*.ts\"",
+    "prisma": "prisma generate",
+    "prisma:dev": "prisma migrate dev"
   },
   "keywords": [],
   "author": "",

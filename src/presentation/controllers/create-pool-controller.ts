@@ -10,11 +10,12 @@ export class CreatePoolController implements IController {
     try {
       const poolSchema = z.object({
         title: z.string(),
+        options: z.array(z.string()),
       })
 
-      const { title } = poolSchema.parse(data)
+      const { title, options } = poolSchema.parse(data)
 
-      const { pool } = await this.createPool.create({ title })
+      const { pool } = await this.createPool.create({ title, options })
 
       return Http.created({ poolId: pool.id })
     } catch (error) {

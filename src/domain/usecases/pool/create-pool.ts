@@ -7,6 +7,7 @@ export interface ICreatePool {
 export namespace ICreatePool {
   export interface Params {
     title: string
+    options: string[]
   }
 
   export interface Result {
