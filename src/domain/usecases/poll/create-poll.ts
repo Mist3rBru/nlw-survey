@@ -1,4 +1,4 @@
-import type { Poll } from '#domain/entities/index.js'
+import { type Poll } from '#domain/entities/index.js'
 
 export interface ICreatePoll {
   create(data: ICreatePoll.Params): Promise<ICreatePoll.Result>

@@ -1,8 +1,6 @@
 {
   "extends": ["plugin:mist3rbru/node"],
-  "rules": {
-    "no-void": "error"
-  },
+  "rules": {},
   "overrides": [
     {
       "files": ["src/domain/mappers/*.ts"],

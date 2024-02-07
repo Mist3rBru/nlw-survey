@@ -7,7 +7,7 @@ export class Http {
     body,
   })
 
-  public static created = (body: unknown): Http.Response => {
+  public static created = (body?: unknown): Http.Response => {
     return {
       statusCode: 201 as const,
       body,

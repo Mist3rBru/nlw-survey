@@ -1,0 +1,2 @@
+- [] Auth user with Github
+- [] Validate user on vote

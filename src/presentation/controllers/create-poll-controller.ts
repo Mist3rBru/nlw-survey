@@ -1,5 +1,5 @@
 import { Http } from '#domain/entities/index.js'
-import type { ICreatePoll } from '#domain/usecases/index.js'
+import { type ICreatePoll } from '#domain/usecases/index.js'
 import { type IController } from '#presentation/protocols/index.js'
 import { z } from 'zod'
 

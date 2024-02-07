@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { type InternalError } from '#domain/entities/index.js'
-import type { IController } from '#presentation/protocols/index.js'
-import type { RouteHandlerMethod } from 'fastify'
+import { type IController } from '#presentation/protocols/index.js'
+import { type RouteHandlerMethod } from 'fastify'
 
 export type ControllerAdapter = (controller: IController) => RouteHandlerMethod
 
@@ -33,6 +33,7 @@ export const adaptController: ControllerAdapter = controller => {
 
       return await res.status(httpResponse.statusCode).send(httpResponse.body)
     } catch (error) {
+      console.error(error)
       const internalError = error as InternalError
 
       if (internalError.isInternal) {

@@ -1,5 +1,7 @@
+import { type Vote } from '#domain/entities/vote.js'
+
 export interface IVotePoll {
-  vote(data: IVotePoll.Params): Promise<void>
+  vote(data: IVotePoll.Params): Promise<Vote>
 }
 
 export namespace IVotePoll {

@@ -20,7 +20,7 @@
   "devDependencies": {
     "@types/node": "^20.11.16",
     "eslint": "^8.56.0",
-    "eslint-plugin-mist3rbru": "^0.3.4",
+    "eslint-plugin-mist3rbru": "^0.3.5",
     "npm-run-all2": "^6.1.2",
     "prettier": "^3.2.5",
     "prisma": "^5.9.1",

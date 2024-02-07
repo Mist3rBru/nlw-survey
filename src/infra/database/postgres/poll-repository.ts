@@ -1,9 +1,9 @@
 import { Poll } from '#domain/entities/poll.js'
 import { PollMapper, PollOptionMapper } from '#domain/mappers/index.js'
-import type {
-  ICreatePollRepository,
-  IFindPollByIdRepository,
-  IListPollsRepository,
+import {
+  type ICreatePollRepository,
+  type IFindPollByIdRepository,
+  type IListPollsRepository,
 } from '#services/protocols/poll-repository.js'
 import { db } from './client.js'
 

@@ -1,7 +1,7 @@
 import { readdir } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import type { FastifyInstance as Router } from 'fastify'
+import { type FastifyInstance as Router } from 'fastify'
 
 interface Routes {
   default(router: Router): void

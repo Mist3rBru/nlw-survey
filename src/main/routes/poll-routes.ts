@@ -4,7 +4,7 @@ import {
   makeFindPollByIdController,
   makeListPollsController,
 } from '#main/composers/index.js'
-import type { FastifyInstance as Router } from 'fastify'
+import { type FastifyInstance as Router } from 'fastify'
 
 export default (router: Router): void => {
   router.get('/polls', adaptController(makeListPollsController()))

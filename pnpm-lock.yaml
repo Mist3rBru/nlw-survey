@@ -19,8 +19,8 @@ devDependencies:
     specifier: ^8.56.0
     version: 8.56.0
   eslint-plugin-mist3rbru:
-    specifier: ^0.3.4
-    version: 0.3.4(eslint-plugin-n@16.6.2)(eslint@8.56.0)(typescript@5.3.3)
+    specifier: ^0.3.5
+    version: 0.3.5(eslint-plugin-n@16.6.2)(eslint@8.56.0)(typescript@5.3.3)
   npm-run-all2:
     specifier: ^6.1.2
     version: 6.1.2
@@ -1428,11 +1428,11 @@ packages:
       - typescript
     dev: true
 
-  /eslint-plugin-mist3rbru@0.3.4(eslint-plugin-n@16.6.2)(eslint@8.56.0)(typescript@5.3.3):
-    resolution: {integrity: sha512-6Qyt50rVmS3BP67BrIZ7+Xw/48bSOs9+U3J3kr8dS9fIK+lxZ7fwi3YEesAp3F+Kk6xVTli30nTSbmN5uTuqXw==}
+  /eslint-plugin-mist3rbru@0.3.5(eslint-plugin-n@16.6.2)(eslint@8.56.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-lF5Bv0n1dQDH1D+w+SULBJ5+Y4d+r8hL30ZUkhPMQBwj5q4hgsrHgFPud0Ba5Anq2fGcJNKf5FJDvsep0XzDEg==}
     peerDependencies:
-      eslint: '*'
-      typescript: '*'
+      eslint: ^8.0.0
+      typescript: ^4.0.0 || ^5.0.0
     dependencies:
       '@typescript-eslint/eslint-plugin': 6.21.0(@typescript-eslint/parser@6.21.0)(eslint@8.56.0)(typescript@5.3.3)
       '@typescript-eslint/parser': 6.21.0(eslint@8.56.0)(typescript@5.3.3)
