@@ -9,12 +9,12 @@ export class FindPollByIdController implements IController {
 
   async handle(request: unknown): Promise<Http.Response> {
     const idSchema = z.object({
-      id: z.string(),
+      pollId: z.string(),
     })
 
-    const { id } = idSchema.parse(request)
+    const { pollId } = idSchema.parse(request)
 
-    const result = await this.findPollById.findById(id)
+    const result = await this.findPollById.findById(pollId)
 
     if (!result) {
       return Http.badRequest(new NotFoundError('poll'))

@@ -4,6 +4,7 @@ import {
   makeCreatePollController,
   makeFindPollByIdController,
   makeListPollsController,
+  makeVotePollController,
 } from '#main/composers/controllers/index.js'
 import { publisher } from '#main/composers/data/publisher.js'
 import { type FastifyInstance as Router } from 'fastify'
@@ -11,7 +12,7 @@ import { type FastifyInstance as Router } from 'fastify'
 export default (router: Router): void => {
   router.get('/polls', adaptController(makeListPollsController()))
 
-  router.get('/polls/:id', adaptController(makeFindPollByIdController()))
+  router.get('/polls/:pollId', adaptController(makeFindPollByIdController()))
 
   router.get(
     '/polls/:id/results',
@@ -20,4 +21,6 @@ export default (router: Router): void => {
   )
 
   router.post('/polls', adaptController(makeCreatePollController()))
+
+  router.post('/polls/:pollId/votes', adaptController(makeVotePollController()))
 }
