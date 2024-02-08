@@ -1,6 +1,6 @@
 import { Http } from '#domain/entities/index.js'
 import { type ICreatePoll } from '#domain/usecases/index.js'
-import { type IController } from '#presentation/protocols/index.js'
+import { type IController } from '#presentation/protocols/controller.js'
 import { z } from 'zod'
 
 export class CreatePollController implements IController {

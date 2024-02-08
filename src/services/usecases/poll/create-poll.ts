@@ -1,7 +1,7 @@
 import { MissingParamError } from '#domain/entities/index.js'
 import { Poll } from '#domain/entities/poll.js'
 import { type ICreatePoll } from '#domain/usecases/index.js'
-import { type ICreatePollRepository } from '#services/protocols/index.js'
+import { type ICreatePollRepository } from '#services/protocols/poll-repository.js'
 
 export class CreatePoll implements ICreatePoll {
   constructor(private readonly createPollRepository: ICreatePollRepository) {}
