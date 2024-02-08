@@ -19,7 +19,9 @@ export class VotePoll implements IVotePoll {
       throw new InvalidParamError('pollId')
     }
 
-    const optionExists = poll.options.find(option => option.id === pollOptionId)
+    const optionExists = poll.options?.find(
+      option => option.id === pollOptionId
+    )
 
     if (!optionExists) {
       throw new InvalidParamError('pollOptionId')

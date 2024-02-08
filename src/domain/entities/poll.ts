@@ -9,7 +9,7 @@ export class Poll {
     this.props = {
       ...params,
       id: pollId,
-      options: params.options.map(option =>
+      options: params.options?.map(option =>
         typeof option === 'string'
           ? new PollOption({
               pollId: pollId.value,
@@ -39,7 +39,7 @@ export class Poll {
     return this.props.updatedAt
   }
 
-  get options(): PollOption[] {
+  get options(): PollOption[] | undefined {
     return this.props.options
   }
 }
@@ -48,7 +48,7 @@ export namespace Poll {
   export interface Params {
     id?: string
     title: string
-    options: PollOption.Params[] | string[]
+    options?: PollOption.Params[] | string[]
     createdAt?: Date
     updatedAt?: Date
   }
@@ -56,7 +56,7 @@ export namespace Poll {
   export interface Props {
     id: UUID
     title: string
-    options: PollOption[]
+    options: PollOption[] | undefined
     createdAt: Date
     updatedAt: Date
   }

@@ -19,7 +19,8 @@ export class PollRepository implements IPollRepository {
         ...new PollMapper(data).toPrisma(),
         options: {
           createMany: {
-            data: data.options.map(option => ({
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            data: data.options!.map(option => ({
               ...new PollOptionMapper(option).toPrisma(),
               pollId: undefined,
             })),
@@ -30,11 +31,7 @@ export class PollRepository implements IPollRepository {
   }
 
   async list(): Promise<Poll[]> {
-    const data = await db.poll.findMany({
-      include: {
-        options: true,
-      },
-    })
+    const data = await db.poll.findMany()
 
     return data.map(d => new Poll(d))
   }

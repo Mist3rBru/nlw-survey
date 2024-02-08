@@ -11,7 +11,7 @@ export class CreatePoll implements ICreatePoll {
 
     const poll = new Poll({ title, options })
 
-    if (poll.options.length === 0) {
+    if (poll.options?.length === 0) {
       throw new MissingParamError('opções da pesquisa')
     }
 
