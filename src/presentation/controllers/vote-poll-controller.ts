@@ -1,10 +1,14 @@
 import { Http } from '#domain/entities/index.js'
 import { type IVotePoll } from '#domain/usecases/index.js'
 import { type IController } from '#presentation/protocols/controller.js'
+import { type IPublisher } from '#services/protocols/data/publisher.js'
 import { z } from 'zod'
 
 export class VotePollController implements IController {
-  constructor(private readonly votePoll: IVotePoll) {}
+  constructor(
+    private readonly votePoll: IVotePoll,
+    private readonly votingPublisher: IPublisher
+  ) {}
 
   async handle(request: unknown): Promise<Http.Response> {
     const votePollSchema = z.object({
@@ -14,7 +18,9 @@ export class VotePollController implements IController {
 
     const { pollId, pollOptionId } = votePollSchema.parse(request)
 
-    await this.votePoll.vote({ pollId, pollOptionId })
+    const poll = await this.votePoll.vote({ pollId, pollOptionId })
+
+    this.votingPublisher.publish(poll.id, poll)
 
     return Http.created()
   }

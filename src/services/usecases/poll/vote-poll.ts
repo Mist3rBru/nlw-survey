@@ -1,11 +1,10 @@
-import { InvalidParamError } from '#domain/entities/index.js'
-import { Vote } from '#domain/entities/vote.js'
+import { InvalidParamError, type Poll, Vote } from '#domain/entities/index.js'
 import { type IVotePoll } from '#domain/usecases/index.js'
-import { type IFindPollByIdRepository } from '#services/protocols/poll-repository.js'
+import { type IFindPollByIdRepository } from '#services/protocols/database/poll-repository.js'
 import {
   type ICreateVoteRepository,
   type IIncrementVoteRepository,
-} from '#services/protocols/vote-repository.js'
+} from '#services/protocols/database/vote-repository.js'
 
 export class VotePoll implements IVotePoll {
   constructor(
@@ -14,7 +13,7 @@ export class VotePoll implements IVotePoll {
     private readonly incrementVoteRepository: IIncrementVoteRepository
   ) {}
 
-  async vote(data: IVotePoll.Params): Promise<Vote> {
+  async vote(data: IVotePoll.Params): Promise<Poll> {
     const { pollId, pollOptionId } = data
 
     const poll = await this.findPollByIdRepository.findById(pollId)
@@ -23,18 +22,18 @@ export class VotePoll implements IVotePoll {
       throw new InvalidParamError('pollId')
     }
 
-    const optionExists = poll.options?.find(
-      option => option.id === pollOptionId
-    )
+    const pollOption = poll.options?.find(option => option.id === pollOptionId)
 
-    if (!optionExists) {
+    if (!pollOption) {
       throw new InvalidParamError('pollOptionId')
     }
 
     const vote = new Vote({ pollId, pollOptionId })
-    await this.createVoteRepository.create(vote)
-    await this.incrementVoteRepository.increment(vote)
 
-    return vote
+    await this.createVoteRepository.create(vote)
+
+    pollOption.votes = await this.incrementVoteRepository.increment(vote)
+
+    return poll
   }
 }

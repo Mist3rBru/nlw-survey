@@ -5,5 +5,5 @@ export interface ICreateVoteRepository {
 }
 
 export interface IIncrementVoteRepository {
-  increment(vote: Vote): Promise<void>
+  increment(vote: Vote): Promise<number>
 }

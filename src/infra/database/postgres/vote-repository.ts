@@ -1,6 +1,6 @@
 import { type Vote } from '#domain/entities/index.js'
 import { VoteMapper } from '#domain/mappers/vote-mapper.js'
-import { type ICreateVoteRepository } from '#services/protocols/vote-repository.js'
+import { type ICreateVoteRepository } from '#services/protocols/database/vote-repository.js'
 import { db } from './client.js'
 
 interface IVoteRepository extends ICreateVoteRepository {}

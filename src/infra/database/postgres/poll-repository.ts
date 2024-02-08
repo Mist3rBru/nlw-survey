@@ -4,7 +4,7 @@ import {
   type ICreatePollRepository,
   type IFindPollByIdRepository,
   type IListPollsRepository,
-} from '#services/protocols/poll-repository.js'
+} from '#services/protocols/database/poll-repository.js'
 import { db } from './client.js'
 
 interface IPollRepository

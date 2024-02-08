@@ -1,7 +1,7 @@
 /* eslint-disable security/detect-object-injection */
 import { type Vote } from '#domain/entities/vote.js'
-import { type IFindPollResultsRepository } from '#services/protocols/poll-repository.js'
-import { type IIncrementVoteRepository } from '#services/protocols/vote-repository.js'
+import { type IFindPollResultsRepository } from '#services/protocols/database/poll-repository.js'
+import { type IIncrementVoteRepository } from '#services/protocols/database/vote-repository.js'
 import { redis } from './client.js'
 
 interface IRedisRepository
@@ -9,8 +9,10 @@ interface IRedisRepository
     IFindPollResultsRepository {}
 
 export class RedisRepository implements IRedisRepository {
-  async increment(vote: Vote): Promise<void> {
-    await redis.zincrby(vote.pollId, 1, vote.pollOptionId)
+  async increment(vote: Vote): Promise<number> {
+    const votes = await redis.zincrby(vote.pollId, 1, vote.pollOptionId)
+
+    return Number(votes)
   }
 
   async findResults(

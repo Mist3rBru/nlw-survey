@@ -3,7 +3,7 @@ import { type IFindPollById } from '#domain/usecases/index.js'
 import {
   type IFindPollByIdRepository,
   type IFindPollResultsRepository,
-} from '#services/protocols/poll-repository.js'
+} from '#services/protocols/database/poll-repository.js'
 
 export class FindPollById implements IFindPollById {
   constructor(

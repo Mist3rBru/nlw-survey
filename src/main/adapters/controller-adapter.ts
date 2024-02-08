@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { type InternalError } from '#domain/entities/index.js'
 import { type IController } from '#presentation/protocols/controller.js'
-import { type RouteHandlerMethod } from 'fastify'
-
-export type ControllerAdapter = (controller: IController) => RouteHandlerMethod
+import {
+  type FastifyReply,
+  type FastifyRequest,
+  type RouteHandlerMethod,
+} from 'fastify'
 
 const parseBody = (
   body: Record<string, any> | undefined
@@ -21,8 +23,8 @@ const parseBody = (
   return result
 }
 
-export const adaptController: ControllerAdapter = controller => {
-  return async (req, res): Promise<void> => {
+export function adaptController(controller: IController): RouteHandlerMethod {
+  return async (req: FastifyRequest, res: FastifyReply): Promise<void> => {
     const request = {
       ...(req.params as Record<string, any>),
       ...parseBody(req.body as Record<string, any>),
