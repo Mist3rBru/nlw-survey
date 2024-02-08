@@ -1,6 +1,6 @@
 import { Http, NotFoundError } from '#domain/entities/index.js'
 import { PollMapper } from '#domain/mappers/poll-mapper.js'
-import { type IFindPollById } from '#domain/usecases/poll/find-by-id.js'
+import { type IFindPollById } from '#domain/usecases/poll/find-poll-by-id.js'
 import { type IController } from '#presentation/protocols/controller.js'
 import { z } from 'zod'
 

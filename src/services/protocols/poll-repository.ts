@@ -9,5 +9,9 @@ export interface IListPollsRepository {
 }
 
 export interface IFindPollByIdRepository {
-  findById(id: string): Promise<Poll | null>
+  findById(pollId: string): Promise<Poll | null>
+}
+
+export interface IFindPollResultsRepository {
+  findResults(pollId: string): Promise<{ pollId: string; votes: number }[]>
 }

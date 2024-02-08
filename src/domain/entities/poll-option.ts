@@ -9,7 +9,7 @@ export class PollOption {
       ...params,
       id: new UUID(params.id),
       pollId: UUID.parse(params.pollId),
-      poll: params.poll ? new Poll(params.poll) : undefined,
+      poll: params.poll && new Poll(params.poll),
     }
   }
 
@@ -28,6 +28,14 @@ export class PollOption {
   get poll(): Poll | undefined {
     return this.props.poll
   }
+
+  get votes(): number | undefined {
+    return this.votes
+  }
+
+  set votes(votes: number) {
+    this.votes = votes
+  }
 }
 
 export namespace PollOption {
@@ -35,6 +43,7 @@ export namespace PollOption {
     id?: string
     pollId: string
     title: string
+    votes?: number
 
     poll?: Poll.Params
   }
@@ -43,7 +52,8 @@ export namespace PollOption {
     id: UUID
     pollId: string
     title: string
+    votes?: number
 
-    poll: Poll | undefined
+    poll?: Poll
   }
 }

@@ -4,6 +4,6 @@ export interface ICreateVoteRepository {
   create(vote: Vote): Promise<void>
 }
 
-export interface IIncrementVoteCountRepository {
+export interface IIncrementVoteRepository {
   increment(vote: Vote): Promise<void>
 }

@@ -31,6 +31,14 @@ export class Poll {
     return this.props.title
   }
 
+  get votes(): number | undefined {
+    return this.props.votes
+  }
+
+  set votes(votes: number) {
+    this.props.votes = votes
+  }
+
   get createdAt(): Date {
     return this.props.createdAt
   }
@@ -49,6 +57,7 @@ export namespace Poll {
     id?: string
     title: string
     options?: PollOption.Params[] | string[]
+    votes?: number
     createdAt?: Date
     updatedAt?: Date
   }
@@ -56,7 +65,8 @@ export namespace Poll {
   export interface Props {
     id: UUID
     title: string
-    options: PollOption[] | undefined
+    options?: PollOption[]
+    votes?: number
     createdAt: Date
     updatedAt: Date
   }

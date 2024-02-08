@@ -1,2 +1,3 @@
 - [] Auth user with Github
 - [] Validate user on vote
+- [] Create Validation classes with Zod
