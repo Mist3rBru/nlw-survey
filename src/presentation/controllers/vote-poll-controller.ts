@@ -1,22 +1,23 @@
 import { Http, InvalidParamError } from '#domain/entities/index.js'
 import { type IVotePoll } from '#domain/usecases/index.js'
-import { type IController } from '#presentation/protocols/controller.js'
+import {
+  type IController,
+  type IValidator,
+} from '#presentation/protocols/http.js'
 import { type IPublisher } from '#services/protocols/data/publisher.js'
-import { z } from 'zod'
 
 export class VotePollController implements IController {
   constructor(
+    private readonly validator: IValidator<{
+      pollId: string
+      pollOptionId: string
+    }>,
     private readonly votePoll: IVotePoll,
     private readonly votingPublisher: IPublisher
   ) {}
 
   async handle(request: unknown): Promise<Http.Response> {
-    const votePollSchema = z.object({
-      pollId: z.string(),
-      pollOptionId: z.string(),
-    })
-
-    const { pollId, pollOptionId } = votePollSchema.parse(request)
+    const { pollId, pollOptionId } = this.validator.validate(request)
 
     const poll = await this.votePoll.vote({ pollId, pollOptionId })
     const pollOption = poll.options?.find(option => option.id === pollOptionId)

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { type InternalError } from '#domain/entities/index.js'
-import { type IController } from '#presentation/protocols/controller.js'
+import { type IController } from '#presentation/protocols/http.js'
 import {
   type FastifyReply,
   type FastifyRequest,

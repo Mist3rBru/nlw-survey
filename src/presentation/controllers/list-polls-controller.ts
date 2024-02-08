@@ -1,7 +1,7 @@
 import { Http } from '#domain/entities/index.js'
 import { PollMapper } from '#domain/mappers/poll-mapper.js'
 import { type IListPolls } from '#domain/usecases/poll/list-polls.js'
-import { type IController } from '#presentation/protocols/controller.js'
+import { type IController } from '#presentation/protocols/http.js'
 
 export class ListPollsController implements IController {
   constructor(private readonly listPolls: IListPolls) {}

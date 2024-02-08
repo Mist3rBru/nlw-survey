@@ -8,6 +8,13 @@ export class InternalError extends Error {
   }
 }
 
+export class ValidationError extends InternalError {
+  constructor(message: string) {
+    super(message)
+    this.name = 'ValidationError'
+  }
+}
+
 export class InvalidParamError extends InternalError {
   constructor(param: string) {
     super(`Campo inválido: ${param}`)
