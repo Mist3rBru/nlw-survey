@@ -2,12 +2,16 @@ import { InvalidParamError } from '#domain/entities/index.js'
 import { Vote } from '#domain/entities/vote.js'
 import { type IVotePoll } from '#domain/usecases/index.js'
 import { type IFindPollByIdRepository } from '#services/protocols/poll-repository.js'
-import { type ICreateVoteRepository } from '#services/protocols/vote-repository.js'
+import {
+  type ICreateVoteRepository,
+  type IIncrementVoteCountRepository,
+} from '#services/protocols/vote-repository.js'
 
 export class VotePoll implements IVotePoll {
   constructor(
     private readonly findPollByIdRepository: IFindPollByIdRepository,
-    private readonly createVoteRepository: ICreateVoteRepository
+    private readonly createVoteRepository: ICreateVoteRepository,
+    private readonly incrementVoteCountRepository: IIncrementVoteCountRepository
   ) {}
 
   async vote(data: IVotePoll.Params): Promise<Vote> {
@@ -29,6 +33,7 @@ export class VotePoll implements IVotePoll {
 
     const vote = new Vote({ pollId, pollOptionId })
     await this.createVoteRepository.create(vote)
+    await this.incrementVoteCountRepository.increment(vote)
 
     return vote
   }
